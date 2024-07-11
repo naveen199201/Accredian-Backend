@@ -14,16 +14,16 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.post('/submit-referral', async (req, res) => {
-  const { referredCourse, referrer, referrerName, referrerId, referee } = req.body;
+  const { referredCourse, referrerName, referrerId, refereeName,refereeEmail } = req.body;
 
   try {
     const referral = await prisma.referral.create({
       data: {
         referredCourse,
-        referrer,
         referrerName,
         referrerId,
-        referee,
+        refereeName,
+        refereeEmail,
       },
     });
     res.json({ message: 'Referral submitted successfully', id: referral.id });
